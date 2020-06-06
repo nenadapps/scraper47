@@ -82,11 +82,13 @@ def get_details(url, selection):
     # image_urls should be a list
     images = []                    
     try:
-        image_items = html.select('.main-image a')
+        image_items = html.select('.main-image-container a')
         for image_item in image_items:
-            img = 'https://www.nstaffsstamps.uk' + image_item.get('href')
-            if img not in images:
-                images.append(img)
+            img_href = image_item.get('href')
+            if img_href != '#':
+                img = 'https://www.nstaffsstamps.uk' + img_href
+                if img not in images:
+                    images.append(img)
     except:
         pass
     
